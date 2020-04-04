@@ -29,7 +29,7 @@ namespace assgn2
 
         private void Form3_Load(object sender, EventArgs e)
         {
-            message.Text = "Welcome" + _name;
+            message.Text = "Welcome  " + _name;
 
             var imageName = UsersBO.loadData(login);
 
@@ -37,6 +37,13 @@ namespace assgn2
             String applicationBasePath = System.IO.Path.GetDirectoryName(Application.ExecutablePath);
             String filePath = applicationBasePath + @"\image\" + imageName;
             pictureBox1.Image = Image.FromFile(filePath);
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            this.Hide();
+            Form1 obj = new Form1();
+            obj.ShowDialog();
         }
     }
 }

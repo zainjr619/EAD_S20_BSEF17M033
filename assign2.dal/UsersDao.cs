@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
@@ -77,6 +78,84 @@ namespace assign2.dal
         }
 
 
+        public static Boolean ValidateAdmin(String pLogin, String pPassword)
+        {
+            try
+            {
+                using (SqlConnection conn = new SqlConnection(connString))
+                {
+                    conn.Open();
+
+                    String query = String.Format("select count(*) from dbo.Admin where login='{0}'and password='{1}'", pLogin, pPassword);
+                    SqlCommand command = new SqlCommand(query, conn);
+                    var result = (int)command.ExecuteScalar();
+                    if (result == 1)
+                    {
+                        return true;
+                    }
+                    else
+                    {
+                        return false;
+                    }
+                }
+            }
+
+            catch (Exception ex)
+            {
+                return false;
+
+            }
+        }
+
+        public static DataTable LoadAllUsers()
+        {
+            using (SqlConnection conn = new SqlConnection(connString))
+            {
+                conn.Open();
+                String query = "select * from dbo.Users";
+                SqlCommand command = new SqlCommand(query, conn);
+                SqlDataReader reader = command.ExecuteReader();
+                DataTable user = new DataTable();
+                user.Load(reader);
+                reader.Close();
+                return user;
+            }
+
+
+
+        }
+        public static string GetEmail(String login)
+        {
+            using (SqlConnection conn = new SqlConnection(connString))
+            {
+                conn.Open();
+                string query = String.Format("select * from dbo.Users Where Login='{0}'", login);
+                SqlCommand command = new SqlCommand(query, conn);
+                var result = command.ExecuteReader();
+                String email = null;
+                if (result.Read())
+                {
+                    email = (String)result.GetString(6);
+                }
+                return email;
+
+            }
+
+        }
+        public static int UpdatePassword(String password, String email)
+        {
+
+            using (SqlConnection conn = new SqlConnection(connString))
+            {
+                conn.Open();
+
+                String query = String.Format(@"Update dbo.Users SET Password='{0}' Where Email='{1}'", password, email);
+                SqlCommand command = new SqlCommand(query, conn);
+                var result = command.ExecuteNonQuery();
+                //int result = int.Parse(obj);
+                return result;
+            }
+        }
 
 
     }

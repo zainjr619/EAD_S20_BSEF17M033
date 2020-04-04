@@ -57,6 +57,7 @@
             this.btnCon.TabIndex = 2;
             this.btnCon.Text = "Confirm";
             this.btnCon.UseVisualStyleBackColor = true;
+            this.btnCon.Click += new System.EventHandler(this.btnCon_Click);
             // 
             // Form5
             // 
@@ -68,6 +69,7 @@
             this.Controls.Add(this.textBox1);
             this.Name = "Form5";
             this.Text = "Enter Reset Code";
+            this.Load += new System.EventHandler(this.Form5_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 

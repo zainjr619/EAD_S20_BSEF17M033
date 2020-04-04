@@ -147,6 +147,10 @@
       <Project>{81fd2a74-46e1-43a3-ba9c-9d709283a348}</Project>
       <Name>assign2.bal</Name>
     </ProjectReference>
+    <ProjectReference Include="..\UserDTO\UserDTO.csproj">
+      <Project>{c6959e6a-a474-4902-96da-c866dd330a14}</Project>
+      <Name>UserDTO</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
