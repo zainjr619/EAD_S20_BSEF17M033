@@ -46,5 +46,11 @@
     <Compile Include="sqlConnection.cs" />
     <Compile Include="UsersDao.cs" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\UserDTO\UserDTO.csproj">
+      <Project>{c6959e6a-a474-4902-96da-c866dd330a14}</Project>
+      <Name>UserDTO</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

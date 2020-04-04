@@ -77,6 +77,7 @@
             this.label4.Size = new System.Drawing.Size(92, 13);
             this.label4.TabIndex = 3;
             this.label4.Text = "Forgot Password?";
+            this.label4.Click += new System.EventHandler(this.label4_Click);
             // 
             // textBox1
             // 
@@ -111,6 +112,7 @@
             this.btnReset.TabIndex = 7;
             this.btnReset.Text = "Reset Password";
             this.btnReset.UseVisualStyleBackColor = true;
+            this.btnReset.Click += new System.EventHandler(this.btnReset_Click);
             // 
             // btnLogin
             // 

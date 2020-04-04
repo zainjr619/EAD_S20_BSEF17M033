@@ -34,5 +34,17 @@ namespace assgn2
         {
             Application.Exit();
         }
+
+        private void btnAdmin_Click(object sender, EventArgs e)
+        {
+            this.Hide();
+            Form7 obj4 = new Form7();
+            obj4.ShowDialog();
+        }
+
+        private void btnExit_Click(object sender, EventArgs e)
+        {
+            Application.Exit();
+        }
     }
 }

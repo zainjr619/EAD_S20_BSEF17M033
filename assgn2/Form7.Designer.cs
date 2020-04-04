@@ -34,6 +34,7 @@
             this.textBox2 = new System.Windows.Forms.TextBox();
             this.btnCaancel = new System.Windows.Forms.Button();
             this.btnLogin = new System.Windows.Forms.Button();
+            this.lbl = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // label1
@@ -85,12 +86,27 @@
             this.btnLogin.TabIndex = 5;
             this.btnLogin.Text = "Login";
             this.btnLogin.UseVisualStyleBackColor = true;
+            this.btnLogin.Click += new System.EventHandler(this.btnLogin_Click);
+            // 
+            // lbl
+            // 
+            this.lbl.AutoSize = true;
+            this.lbl.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbl.ForeColor = System.Drawing.Color.DarkRed;
+            this.lbl.Location = new System.Drawing.Point(58, 130);
+            this.lbl.Name = "lbl";
+            this.lbl.Size = new System.Drawing.Size(44, 13);
+            this.lbl.TabIndex = 6;
+            this.lbl.Text = "invalid";
+            this.lbl.Visible = false;
+            this.lbl.Click += new System.EventHandler(this.label3_Click);
             // 
             // Form7
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(369, 235);
+            this.Controls.Add(this.lbl);
             this.Controls.Add(this.btnLogin);
             this.Controls.Add(this.btnCaancel);
             this.Controls.Add(this.textBox2);
@@ -112,5 +128,6 @@
         private System.Windows.Forms.TextBox textBox2;
         private System.Windows.Forms.Button btnCaancel;
         private System.Windows.Forms.Button btnLogin;
+        private System.Windows.Forms.Label lbl;
     }
 }
