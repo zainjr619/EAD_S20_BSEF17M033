@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Data;
 using System.Data.SqlClient;
 using System.Linq;
 using System.Web;
@@ -10,30 +9,30 @@ namespace dal
     public class userDao
     {
         private static String connString = @"Data Source=localhost\SQLEXPRESS2012;Initial Catalog=Assignment4; User Id=sa;Password=neymar11";
-        public static Boolean ValidateUser(String pLogin, String pPassword)
+        public static String ValidateUser(String pLogin, String pPassword)
         {
-            
-            
-           using (SqlConnection conn = new SqlConnection(connString))
-           {
-              conn.Open();
 
-              String query = String.Format("select count(*) from dbo.User1 where login='{0}'and password='{1}'", pLogin, pPassword);
-              SqlCommand command = new SqlCommand(query, conn);
-              var result = (int)command.ExecuteScalar();
-              if (result == 1)
-              {
-                 return true;
-              }
-              else
-              {
-                 return false;
-              }
-           }
+
+            using (SqlConnection conn = new SqlConnection(connString))
+            {
+                conn.Open();
+
+                String query = String.Format("select count(*) from dbo.User1 where login='{0}'and password='{1}'", pLogin, pPassword);
+                SqlCommand command = new SqlCommand(query, conn);
+                var result = (int)command.ExecuteScalar();
+                if (result == 1)
+                {
+                    return "true";
+                }
+                else
+                {
+                    return "false";
+                }
+            }
         }
 
-            
-        
+
+
         public static int UserSave(String name, String login, String password)
         {
 
@@ -70,23 +69,23 @@ namespace dal
             using (SqlConnection conn = new SqlConnection(connString))
             {
                 conn.Open();
-                String query =String.Format(@"select FolderID,FolderName from dbo.folder where ParentFolderId = '0'",Parent);
+                String query = String.Format(@"select FolderID,FolderName from dbo.folder where ParentFolderId = '0'", Parent);
                 SqlCommand command = new SqlCommand(query, conn);
                 SqlDataReader reader = command.ExecuteReader();
                 string result = "";
-                if(reader.Read())
+                if (reader.Read())
                 {
                     result += "[[" + reader.GetInt32(0) + ",";
                     result += "\"" + reader.GetString(1) + "\"]";
-                    while(reader.Read())
+                    while (reader.Read())
                     {
                         result += ",[" + reader.GetInt32(0) + ",";
-                        result+="\"" + reader.GetString(1) + "\"]"; 
-                 
+                        result += "\"" + reader.GetString(1) + "\"]";
+
                     }
                     result += "]";
                 }
-                if(result!="")
+                if (result != "")
                 {
                     return result;
                 }
@@ -100,4 +99,3 @@ namespace dal
         }
     }
 }
-

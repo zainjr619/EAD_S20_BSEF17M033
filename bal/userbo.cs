@@ -1,7 +1,6 @@
 ﻿using dal;
 using System;
 using System.Collections.Generic;
-using System.Data;
 using System.Linq;
 using System.Web;
 
@@ -9,7 +8,7 @@ namespace bal
 {
     public class userbo
     {
-        public static Boolean ValidateUser(String pLogin, String pPassword)
+        public static String ValidateUser(String pLogin, String pPassword)
         {
             return userDao.ValidateUser(pLogin, pPassword);
         }
@@ -26,6 +25,5 @@ namespace bal
         {
             return userDao.LoadAllFolders(Parent);
         }
-
     }
 }

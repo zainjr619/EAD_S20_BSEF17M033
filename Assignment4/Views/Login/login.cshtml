@@ -1,0 +1,86 @@
+﻿
+@{
+    ViewBag.Title = "login";
+    Layout = "~/Views/Shared/_Assign4.cshtml";
+}
+
+<h2>login</h2>
+@{
+    <style>
+        input[type=text], input[type=password] {
+            width: 25%;
+            padding: 5px;
+            margin: 2px 0 2px 0;
+            border: solid;
+            background: #f1f1f1;
+        }
+
+        #btnSubmit {
+            background-color: #4CAF50;
+            color: white;
+            padding: 16px 20px;
+            margin: 8px 0;
+            border: none;
+        }
+
+        div {
+            border-radius: 5px;
+            background-color: #f2f2f2;
+            padding: 20px;
+        }
+    </style>
+    <br />
+    <b>Login:<br /><input type="text" name="txtUserName" id="lname" /></b>
+    <br />
+    <b>Password:<br /><input type="password" name="txtPassword" id="upass" /></b>
+    <br />
+    <input type="button" value="LOGIN" id="btnSubmit">
+    <span id="login-error" style="color:red">@ViewData["CredentialErrors"]</span>
+
+    <script>
+         $(document).ready(function () {
+             $("#btnSubmit").on("click", function (event) {
+                 if ($("#lname").val().trim() === "" ||
+                     $("#upass").val().trim() === "") {
+                     alert("please enter username and password");
+                     return false;
+                 }
+             });
+
+         });
+         var l, p;
+         $(document).ready(function () {
+             $("#btnSubmit").click(function () {
+                 //var basePath = 'https://localhost:44358/';
+
+                 l = $("#lname").val();
+                 p = $("#upass").val();
+                 let obj1 = { "Login": l, "password": p };
+                 console.log(obj1);
+                 var ajaxcall = {
+                     type: "POST",
+                     url: '@Url.Content("~/Login/ValidateUser")' ,
+                     data: obj1,
+                     success: successFun,
+                     error: OnError
+                 }
+                 $.ajax(ajaxcall);
+             });
+             function successFun(res) {
+                 if (res == "success") {
+                     window.location.href = '@Url.Content("~/Login/Home")';
+                 }
+                 else {
+                     alert("invalid");
+                 }
+             }
+             function OnError(res) {
+
+                 //console.log(res);
+             }
+         });
+
+
+    </script>
+
+}
